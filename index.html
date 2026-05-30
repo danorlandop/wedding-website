@@ -1135,9 +1135,13 @@
       document.documentElement.lang = lang;
       localStorage.setItem('md-lang', lang);
     }
-    // Persist language
+    // Persist language, fall back to browser locale
     const savedLang = localStorage.getItem('md-lang');
-    if (savedLang === 'es') setLang('es');
+    if (savedLang) {
+      if (savedLang === 'es') setLang('es');
+    } else if (navigator.language?.toLowerCase().startsWith('es')) {
+      setLang('es');
+    }
 
     // Countdown timer
     function updateCountdown() {
