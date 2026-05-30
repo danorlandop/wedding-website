@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcela & Daniel · August 27, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:   #f4efe8;
+      --cream2:  #ede6db;
+      --dark:    #1c1c1a;
+      --charcoal:#2e2e2c;
+      --olive:   #4a5c3f;
+      --olive2:  #3a4a31;
+      --warm:    #8c7355;
+      --light-text: #f0ebe3;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── LANGUAGE TOGGLE ───────────────────────────────────────── */
+    #lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--dark);
+      background: var(--cream);
+    }
+    #lang-toggle button {
+      background: none;
+      border: none;
+      padding: 6px 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      color: var(--dark);
+      transition: background 0.2s, color 0.2s;
+    }
+    #lang-toggle button.active {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(244,239,232,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(28,28,26,0.08);
+      transition: padding 0.3s;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover { color: var(--olive); }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(74,92,63,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(64px, 12vw, 120px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 32px;
+      color: var(--dark);
+    }
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 6vw, 56px);
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-date-line {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .hero-date-line .rule { flex: 1; max-width: 80px; height: 1px; background: var(--dark); }
+    .hero-date-label {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+    .hero-date-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 10vw, 100px);
+      font-weight: 300;
+      line-height: 0.9;
+      margin: 4px 0;
+    }
+    .hero-date-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 12px;
+    }
+    .hero-date-side {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+    }
+    .hero-date-side span { display: block; margin-top: 2px; border-top: 1px solid var(--dark); padding-top: 4px; }
+    .hero-subtitle {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-top: 20px;
+    }
+    .hero-adults {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      margin-top: 28px;
+      font-style: italic;
+      color: var(--charcoal);
+      opacity: 0.7;
+    }
+
+    /* Countdown */
+    #countdown {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      justify-content: center;
+    }
+    .countdown-unit { text-align: center; }
+    .countdown-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 300;
+      line-height: 1;
+      display: block;
+    }
+    .countdown-label {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      display: block;
+      color: var(--warm);
+    }
+    .countdown-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      align-self: center;
+      color: var(--warm);
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    /* Scroll cue */
+    .scroll-cue {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: bobble 2s ease-in-out infinite;
+    }
+    .scroll-cue span { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
+    .scroll-cue svg { width: 18px; }
+    @keyframes bobble { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ─── SECTION BASE ──────────────────────────────────────────── */
+    section { padding: 100px 40px; }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      line-height: 1.1;
+    }
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--olive);
+      margin: 24px auto;
+    }
+    .divider.left { margin-left: 0; }
+
+    /* ─── STORY ─────────────────────────────────────────────────── */
+    #story { background: var(--dark); color: var(--light-text); }
+    #story .section-label { color: var(--olive); }
+    #story .section-title { color: var(--light-text); }
+    #story .divider { background: var(--olive); }
+    .story-text {
+      font-size: 15px;
+      line-height: 1.9;
+      max-width: 680px;
+      opacity: 0.88;
+    }
+    .story-text p + p { margin-top: 20px; }
+    .story-15 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(80px, 18vw, 180px);
+      font-weight: 300;
+      color: var(--olive);
+      opacity: 0.15;
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    #story .section-inner { position: relative; }
+
+    /* ─── SCHEDULE ──────────────────────────────────────────────── */
+    #schedule { background: var(--cream); }
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(28,28,26,0.12);
+      margin-top: 48px;
+    }
+    .schedule-item {
+      background: var(--cream);
+      padding: 48px 36px;
+      text-align: center;
+    }
+    .schedule-item:nth-child(2) { background: var(--dark); color: var(--light-text); }
+    .schedule-item:nth-child(2) .sch-type { color: var(--olive); }
+    .schedule-item:nth-child(2) .sch-venue { opacity: 0.7; }
+    .schedule-item:nth-child(2) .sch-divider { background: var(--olive); }
+    .sch-type {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 20px;
+    }
+    .sch-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .sch-ampm {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    .sch-divider { width: 32px; height: 1px; background: var(--warm); margin: 0 auto 20px; }
+    .sch-venue {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .sch-address {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      opacity: 0.55;
+      line-height: 1.6;
+    }
+    .schedule-note {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      font-style: italic;
+      opacity: 0.6;
+    }
+    .map-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 8px 20px;
+      border: 1px solid currentColor;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s, color 0.2s;
+    }
+    .map-btn:hover { background: var(--dark); color: var(--cream); }
+    .schedule-item:nth-child(2) .map-btn:hover { background: var(--cream); color: var(--dark); }
+
+    /* ─── DRESS CODE ────────────────────────────────────────────── */
+    #dresscode { background: var(--cream2); }
+    .dress-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+    .dress-card {
+      text-align: center;
+      padding: 48px 32px;
+      border: 1px solid rgba(28,28,26,0.12);
+      background: var(--cream);
+      position: relative;
+    }
+    .dress-icon { font-size: 48px; margin-bottom: 20px; }
+    .dress-who {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 10px;
+    }
+    .dress-what {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    .dress-link {
+      display: inline-block;
+      padding: 8px 24px;
+      border: 1px solid var(--dark);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--dark);
+      transition: background 0.2s, color 0.2s;
+    }
+    .dress-link:hover { background: var(--dark); color: var(--cream); }
+    .reserved-colors {
+      margin-top: 48px;
+      padding: 32px;
+      border: 1px solid var(--dark);
+      text-align: center;
+    }
+    .reserved-label {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .color-swatches {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .swatch-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(28,28,26,0.2);
+    }
+    .swatch-name { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; }
+
+    /* ─── VENUES ────────────────────────────────────────────────── */
+    #venues { background: var(--cream); }
+    .venues-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .venue-card {
+      padding: 40px 32px;
+      border: 1px solid rgba(28,28,26,0.12);
+    }
+    .venue-tag {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 16px;
+    }
+    .venue-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .venue-address {
+      font-size: 12px;
+      line-height: 1.7;
+      opacity: 0.6;
+      margin-bottom: 24px;
+    }
+    .venue-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 300;
+      color: var(--olive);
+      margin-bottom: 20px;
+    }
+    .venue-map { width: 100%; height: 180px; border: 0; margin-top: 20px; filter: grayscale(0.3); }
+
+    /* ─── ACCOMMODATION ─────────────────────────────────────────── */
+    #accommodation { background: var(--dark); color: var(--light-text); }
+    #accommodation .section-label { color: var(--olive); }
+    #accommodation .section-title { color: var(--light-text); }
+    #accommodation .divider { background: var(--olive); }
+    .accom-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+    }
+    .accom-card {
+      padding: 40px 32px;
+      border: 1px solid rgba(240,235,227,0.12);
+    }
+    .accom-option {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 16px;
+    }
+    .accom-hotel {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--light-text);
+    }
+    .accom-text {
+      font-size: 13px;
+      line-height: 1.8;
+      opacity: 0.72;
+      margin-bottom: 24px;
+    }
+    .accom-code {
+      display: inline-block;
+      border: 1px solid var(--olive);
+      padding: 10px 24px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--olive);
+      font-weight: 500;
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .accom-code:hover { background: var(--olive); color: var(--cream); }
+    .accom-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--olive);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .accom-btn:hover { background: var(--olive2); }
+    .accom-contact {
+      margin-top: 20px;
+      font-size: 12px;
+      line-height: 2;
+      opacity: 0.65;
+    }
+    .accom-contact a { color: var(--light-text); opacity: 0.8; }
+    .accom-note {
+      margin-top: 40px;
+      padding: 24px;
+      border: 1px solid rgba(240,235,227,0.1);
+      font-size: 12px;
+      line-height: 1.8;
+      opacity: 0.6;
+      font-style: italic;
+      grid-column: 1 / -1;
+    }
+
+    /* ─── BEAUTY & RENTALS ──────────────────────────────────────── */
+    #beauty { background: var(--cream2); }
+    .beauty-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+    .beauty-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .beauty-desc {
+      font-size: 13px;
+      line-height: 1.8;
+      opacity: 0.7;
+      margin-bottom: 28px;
+    }
+    .beauty-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .beauty-list li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .beauty-list li a:hover { color: var(--olive); }
+    .beauty-list li a::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--warm);
+      flex-shrink: 0;
+    }
+    .ig-handle { font-size: 11px; opacity: 0.5; margin-left: 4px; }
+
+    /* ─── WISHING WELL ──────────────────────────────────────────── */
+    #wishingwell { background: var(--cream); }
+    .wish-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .wish-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .wish-sub { font-size: 13px; line-height: 1.8; opacity: 0.65; }
+    .wise-card {
+      padding: 40px 32px;
+      background: var(--dark);
+      color: var(--light-text);
+    }
+    .wise-title {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 20px;
+    }
+    .wise-bank {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 24px;
+      color: var(--light-text);
+    }
+    .wise-detail {
+      font-size: 12px;
+      line-height: 2.2;
+      opacity: 0.7;
+    }
+    .wise-detail strong {
+      font-weight: 500;
+      color: var(--light-text);
+      opacity: 1;
+      min-width: 140px;
+      display: inline-block;
+    }
+    .copy-btn {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid rgba(240,235,227,0.2);
+      background: none;
+      color: var(--light-text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.06); border-color: var(--olive); }
+    .copy-msg { font-size: 11px; color: var(--olive); margin-top: 8px; display: none; }
+
+    /* ─── RSVP ──────────────────────────────────────────────────── */
+    #rsvp {
+      background: var(--olive);
+      color: var(--cream);
+      text-align: center;
+      padding: 120px 40px;
+    }
+    #rsvp .monogram-sm {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 300;
+      color: rgba(244,239,232,0.15);
+      margin-bottom: 20px;
+    }
+    #rsvp .rsvp-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 4vw, 34px);
+      font-weight: 300;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+    .rsvp-btn {
+      display: inline-block;
+      padding: 18px 56px;
+      border: 1px solid var(--cream);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+    .rsvp-btn:hover { background: var(--cream); color: var(--olive); }
+    .rsvp-deadline {
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: var(--light-text);
+      text-align: center;
+      padding: 48px 40px;
+    }
+    .footer-mono {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 300;
+      opacity: 0.2;
+      margin-bottom: 16px;
+    }
+    .footer-text {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      opacity: 0.4;
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav ul { gap: 18px; }
+      nav ul li a { font-size: 9px; }
+      .schedule-grid { grid-template-columns: 1fr; }
+      .dress-grid { grid-template-columns: 1fr; }
+      .venues-grid { grid-template-columns: 1fr; }
+      .accom-inner { grid-template-columns: 1fr; }
+      .beauty-grid { grid-template-columns: 1fr; }
+      .wish-inner { grid-template-columns: 1fr; }
+      #countdown { gap: 16px; }
+      .countdown-sep { font-size: 32px; }
+    }
+
+    /* ─── LANGUAGE VISIBILITY ───────────────────────────────────── */
+    [data-lang="es"] { display: none; }
+    body.es [data-lang="en"] { display: none; }
+    body.es [data-lang="es"] { display: revert; }
+  </style>
+</head>
+<body>
+
+  <!-- LANGUAGE TOGGLE -->
+  <div id="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-es" onclick="setLang('es')">ES</button>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#story"     data-lang="en">Our Story</a>    <a href="#story"     data-lang="es">Nuestra Historia</a></li>
+      <li><a href="#schedule"  data-lang="en">Schedule</a>     <a href="#schedule"  data-lang="es">Programa</a></li>
+      <li><a href="#dresscode" data-lang="en">Dress Code</a>   <a href="#dresscode" data-lang="es">Código de Vestimenta</a></li>
+      <li><a href="#venues"    data-lang="en">Venues</a>       <a href="#venues"    data-lang="es">Lugares</a></li>
+      <li><a href="#accommodation" data-lang="en">Stay</a>     <a href="#accommodation" data-lang="es">Alojamiento</a></li>
+      <li><a href="#beauty"    data-lang="en">Beauty</a>       <a href="#beauty"    data-lang="es">Belleza</a></li>
+      <li><a href="#wishingwell" data-lang="en">Gifts</a>      <a href="#wishingwell" data-lang="es">Regalos</a></li>
+      <li><a href="#rsvp"      data-lang="en">RSVP</a>         <a href="#rsvp"      data-lang="es">Confirmar</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="monogram">MD</div>
+    <p class="section-label" data-lang="en">You are cordially invited to celebrate the wedding of</p>
+    <p class="section-label" data-lang="es">Estás cordialmente invitado a celebrar la boda de</p>
+    <h1 class="hero-names">Marcela &amp; Daniel</h1>
+    <div class="hero-date-row">
+      <div class="hero-date-side" data-lang="en">Thursday<span>&nbsp;</span></div>
+      <div class="hero-date-side" data-lang="es">Jueves<span>&nbsp;</span></div>
+      <div>
+        <div class="hero-date-label">August · Agosto</div>
+        <div class="hero-date-number">27</div>
+      </div>
+      <div class="hero-date-side">2026<span>&nbsp;</span></div>
+    </div>
+    <p class="hero-adults" data-lang="en">This celebration has been thoughtfully planned for adults only.</p>
+    <p class="hero-adults" data-lang="es">Esta celebración ha sido pensada con cariño para adultos únicamente.</p>
+    <div id="countdown">
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-days">—</span>
+        <span class="countdown-label" data-lang="en">Days</span>
+        <span class="countdown-label" data-lang="es">Días</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-hours">—</span>
+        <span class="countdown-label" data-lang="en">Hours</span>
+        <span class="countdown-label" data-lang="es">Horas</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-mins">—</span>
+        <span class="countdown-label" data-lang="en">Minutes</span>
+        <span class="countdown-label" data-lang="es">Minutos</span>
+      </div>
+      <span class="countdown-sep">·</span>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-secs">—</span>
+        <span class="countdown-label" data-lang="en">Seconds</span>
+        <span class="countdown-label" data-lang="es">Segundos</span>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <span data-lang="en">Scroll</span>
+      <span data-lang="es">Desliza</span>
+      <svg viewBox="0 0 18 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 4v16M3 14l6 6 6-6"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── OUR STORY ── -->
+  <section id="story">
+    <div class="section-inner">
+      <div class="section-label" data-lang="en">Celebrating 15 Years Together</div>
+      <div class="section-label" data-lang="es">Celebrando 15 Años Juntos</div>
+      <h2 class="section-title" data-lang="en">Our Story</h2>
+      <h2 class="section-title" data-lang="es">Nuestra Historia</h2>
+      <div class="divider left"></div>
+      <div class="story-text" data-lang="en">
+        <p>Our story began 15 years ago in Barranquilla, Colombia. Marcela was 15 and Dani was 18, and it was thanks to one of Dani's cousins that our paths crossed for the very first time. What started as an unexpected meet-up soon turned into a connection that would change our lives forever.</p>
+        <p>From then on, life took us to different places — Miami, Vancouver, Italy — and although distance tested our journey, it never managed to separate us. From the very first day we spoke, we haven't missed a single day. The conversations, the laughter, the shared dreams, and the constant support have been the invisible thread that has always kept us together.</p>
+        <p>Today, after so many years of growing together, learning from one another, and choosing each other every single day, we feel an immense joy to celebrate this long-awaited moment.</p>
+        <p>Our hearts are full knowing that we are here, surrounded by all the people we love, in a place as special to us as Colombia. This day is not only about a wedding, but about a story built with patience, love, complicity, and the certainty that no matter the distance, we have always been home to each other.</p>
+        <p>Thank you for being part of our story and for joining us in this meaningful chapter of our lives.</p>
+      </div>
+      <div class="story-text" data-lang="es">
+        <p>Nuestra historia comenzó hace 15 años en Barranquilla, Colombia. Marcela tenía 15 años y Dani 18, y fue gracias a uno de los primos de Dani que nuestros caminos se cruzaron por primera vez. Lo que comenzó como un encuentro inesperado pronto se convirtió en una conexión que cambiaría nuestras vidas para siempre.</p>
+        <p>A partir de entonces, la vida nos llevó a distintos lugares — Miami, Vancouver, Italia — y aunque la distancia puso a prueba nuestro camino, nunca logró separarnos. Desde el primer día que hablamos, no hemos pasado ni un solo día sin conectarnos. Las conversaciones, las risas, los sueños compartidos y el apoyo constante han sido el hilo invisible que siempre nos ha mantenido unidos.</p>
+        <p>Hoy, después de tantos años creciendo juntos, aprendiendo el uno del otro y eligiéndonos cada día, sentimos una inmensa alegría de celebrar este momento tan esperado.</p>
+        <p>Nuestros corazones están llenos al saber que estamos aquí, rodeados de todas las personas que amamos, en un lugar tan especial para nosotros como Colombia. Este día no es solo una boda, sino una historia construida con paciencia, amor, complicidad y la certeza de que sin importar la distancia, siempre hemos sido el hogar del otro.</p>
+        <p>Gracias por ser parte de nuestra historia y por acompañarnos en este capítulo tan especial de nuestras vidas.</p>
+      </div>
+      <div class="story-15">15</div>
+    </div>
+  </section>
+
+  <!-- ── SCHEDULE ── -->
+  <section id="schedule">
+    <div class="section-inner">
+      <div class="section-label" data-lang="en">Thursday, August 27, 2026</div>
+      <div class="section-label" data-lang="es">Jueves, 27 de Agosto de 2026</div>
+      <h2 class="section-title" data-lang="en">The Day</h2>
+      <h2 class="section-title" data-lang="es">El Programa</h2>
+      <div class="divider left"></div>
+    </div>
+    <div class="section-inner" style="max-width:1000px">
+      <div class="schedule-grid">
+        <!-- Ceremony -->
+        <div class="schedule-item">
+          <div class="sch-type" data-lang="en">Ceremony</div>
+          <div class="sch-type" data-lang="es">Ceremonia</div>
+          <div class="sch-time">1<span style="font-size:28px">:00</span></div>
+          <div class="sch-ampm">PM</div>
+          <div class="sch-divider"></div>
+          <div class="sch-venue">Nuestra Señora del Rosario</div>
+          <div class="sch-address">Cl. 19 #21-64<br>Retiro, Antioquia</div>
+          <a href="https://maps.google.com/?q=Nuestra+Señora+del+Rosario+Retiro+Antioquia+Colombia" target="_blank" class="map-btn" data-lang="en">View Map</a>
+          <a href="https://maps.google.com/?q=Nuestra+Señora+del+Rosario+Retiro+Antioquia+Colombia" target="_blank" class="map-btn" data-lang="es">Ver Mapa</a>
+        </div>
+        <!-- Cocktail -->
+        <div class="schedule-item">
+          <div class="sch-type" data-lang="en">Cocktail Hour</div>
+          <div class="sch-type" data-lang="es">Cóctel</div>
+          <div class="sch-time">2<span style="font-size:28px">:30</span></div>
+          <div class="sch-ampm">PM</div>
+          <div class="sch-divider"></div>
+          <div class="sch-venue">Santa Mónica Premium</div>
+          <div class="sch-address">Don Diego, Rionegro<br>Llanogrande, Antioquia</div>
+          <a href="https://maps.google.com/?q=Santa+Monica+Premium+Llanogrande+Rionegro+Antioquia" target="_blank" class="map-btn" data-lang="en">View Map</a>
+          <a href="https://maps.google.com/?q=Santa+Monica+Premium+Llanogrande+Rionegro+Antioquia" target="_blank" class="map-btn" data-lang="es">Ver Mapa</a>
+        </div>
+        <!-- Reception -->
+        <div class="schedule-item">
+          <div class="sch-type" data-lang="en">Reception</div>
+          <div class="sch-type" data-lang="es">Recepción</div>
+          <div class="sch-time">4<span style="font-size:28px">:30</span></div>
+          <div class="sch-ampm">PM</div>
+          <div class="sch-divider"></div>
+          <div class="sch-venue">Santa Mónica Premium</div>
+          <div class="sch-address">Don Diego, Rionegro<br>Llanogrande, Antioquia</div>
+          <a href="https://maps.google.com/?q=Santa+Monica+Premium+Llanogrande+Rionegro+Antioquia" target="_blank" class="map-btn" data-lang="en">View Map</a>
+          <a href="https://maps.google.com/?q=Santa+Monica+Premium+Llanogrande+Rionegro+Antioquia" target="_blank" class="map-btn" data-lang="es">Ver Mapa</a>
+        </div>
+      </div>
+      <p class="schedule-note" data-lang="en">🚌 Transportation will be provided from the ceremony to the reception.</p>
+      <p class="schedule-note" data-lang="es">🚌 Se proporcionará transporte desde la ceremonia hasta la recepción.</p>
+    </div>
+  </section>
+
+  <!-- ── DRESS CODE ── -->
+  <section id="dresscode">
+    <div class="section-inner">
+      <div class="section-label" data-lang="en">What to Wear</div>
+      <div class="section-label" data-lang="es">¿Cómo Vestirse?</div>
+      <h2 class="section-title" data-lang="en">Dress Code</h2>
+      <h2 class="section-title" data-lang="es">Código de Vestimenta</h2>
+      <div class="divider left"></div>
+      <div class="dress-grid">
+        <div class="dress-card">
+          <div class="dress-icon">👗</div>
+          <div class="dress-who" data-lang="en">Women</div>
+          <div class="dress-who" data-lang="es">Mujeres</div>
+          <div class="dress-what" data-lang="en">Evening Gown</div>
+          <div class="dress-what" data-lang="es">Vestido de Noche</div>
+          <a href="https://pin.it/wqm02SH87" target="_blank" class="dress-link" data-lang="en">View Inspiration →</a>
+          <a href="https://pin.it/wqm02SH87" target="_blank" class="dress-link" data-lang="es">Ver Inspiración →</a>
+        </div>
+        <div class="dress-card">
+          <div class="dress-icon">🤵</div>
+          <div class="dress-who" data-lang="en">Men</div>
+          <div class="dress-who" data-lang="es">Hombres</div>
+          <div class="dress-what" data-lang="en">Black Tuxedo</div>
+          <div class="dress-what" data-lang="es">Smoking Negro</div>
+          <a href="https://pin.it/1YHCghKKa" target="_blank" class="dress-link" data-lang="en">View Inspiration →</a>
+          <a href="https://pin.it/1YHCghKKa" target="_blank" class="dress-link" data-lang="es">Ver Inspiración →</a>
+        </div>
+      </div>
+      <div class="reserved-colors">
+        <div class="reserved-label" data-lang="en">⚠ The following colors are reserved for the wedding party</div>
+        <div class="reserved-label" data-lang="es">⚠ Los siguientes colores están reservados para los novios</div>
+        <div class="color-swatches">
+          <div class="swatch"><div class="swatch-dot" style="background:#ffffff;"></div><span class="swatch-name" data-lang="en">White</span><span class="swatch-name" data-lang="es">Blanco</span></div>
+          <div class="swatch"><div class="swatch-dot" style="background:#e8dcc8;"></div><span class="swatch-name" data-lang="en">Beige</span><span class="swatch-name" data-lang="es">Beige</span></div>
+          <div class="swatch"><div class="swatch-dot" style="background:#d4b896;"></div><span class="swatch-name" data-lang="en">Nude</span><span class="swatch-name" data-lang="es">Nude</span></div>
+          <div class="swatch"><div class="swatch-dot" style="background:#c0c0c0;"></div><span class="swatch-name" data-lang="en">Silver</span><span class="swatch-name" data-lang="es">Plateado</span></div>
+          <div class="swatch"><div class="swatch-dot" style="background:#d4af37;"></div><span class="swatch-name" data-lang="en">Gold</span><span class="swatch-name" data-lang="es">Dorado</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VENUES ── -->
+  <section id="venues">
+    <div class="section-inner" style="max-width:1000px;">
+      <div class="section-label" data-lang="en">Where to go</div>
+      <div class="section-label" data-lang="es">Lugares</div>
+      <h2 class="section-title" data-lang="en">Venues</h2>
+      <h2 class="section-title" data-lang="es">Los Lugares</h2>
+      <div class="divider left"></div>
+      <div class="venues-grid">
+        <div class="venue-card">
+          <div class="venue-tag" data-lang="en">Ceremony · 1:00 PM</div>
+          <div class="venue-tag" data-lang="es">Ceremonia · 1:00 PM</div>
+          <div class="venue-name">Nuestra Señora del Rosario</div>
+          <div class="venue-address">Cl. 19 #21-64<br>Retiro, Antioquia, Colombia</div>
+          <a href="https://maps.google.com/?q=Nuestra+Señora+del+Rosario+Retiro+Antioquia+Colombia" target="_blank" class="dress-link" data-lang="en">Open in Maps →</a>
+          <a href="https://maps.google.com/?q=Nuestra+Señora+del+Rosario+Retiro+Antioquia+Colombia" target="_blank" class="dress-link" data-lang="es">Abrir en Maps →</a>
+          <iframe
+            class="venue-map"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Nuestra+Señora+del+Rosario,Retiro,Antioquia,Colombia">
+          </iframe>
+        </div>
+        <div class="venue-card">
+          <div class="venue-tag" data-lang="en">Cocktail &amp; Reception · 2:30 / 4:30 PM</div>
+          <div class="venue-tag" data-lang="es">Cóctel y Recepción · 2:30 / 4:30 PM</div>
+          <div class="venue-name">Santa Mónica Premium</div>
+          <div class="venue-address">Don Diego, Rionegro<br>Llanogrande, Antioquia, Colombia</div>
+          <a href="https://maps.google.com/?q=Santa+Monica+Premium+Llanogrande+Rionegro+Antioquia" target="_blank" class="dress-link" data-lang="en">Open in Maps →</a>
+          <a href="https://maps.google.com/?q=Santa+Monica+Premium+Llanogrande+Rionegro+Antioquia" target="_blank" class="dress-link" data-lang="es">Abrir en Maps →</a>
+          <iframe
+            class="venue-map"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Santa+Monica+Premium,Llanogrande,Rionegro,Antioquia">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ACCOMMODATION ── -->
+  <section id="accommodation">
+    <div class="section-inner" style="max-width:900px;">
+      <div class="section-label" data-lang="en">Where to Sleep</div>
+      <div class="section-label" data-lang="es">Dónde Alojarse</div>
+      <h2 class="section-title" data-lang="en">Accommodation</h2>
+      <h2 class="section-title" data-lang="es">Alojamiento</h2>
+      <div class="divider left"></div>
+      <div class="accom-inner">
+        <div class="accom-card">
+          <div class="accom-option" data-lang="en">Option 1 — Book Online</div>
+          <div class="accom-option" data-lang="es">Opción 1 — Reserva en Línea</div>
+          <div class="accom-hotel">Lagoon Llanogrande Hotel</div>
+          <div class="accom-text" data-lang="en">Use our exclusive discount code to book directly online. Dates pre-loaded: Aug 26–28, 2026.</div>
+          <div class="accom-text" data-lang="es">Usa nuestro código exclusivo para reservar directamente en línea. Fechas precargadas: 26–28 ago, 2026.</div>
+          <div style="margin-bottom:20px;">
+            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--olive);margin-bottom:8px;" data-lang="en">Discount Code</div>
+            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--olive);margin-bottom:8px;" data-lang="es">Código de Descuento</div>
+            <div class="accom-code" onclick="copyCode(this)" title="Click to copy">marcelaydaniel</div>
+            <div class="copy-msg" id="copy-msg" data-lang="en">Copied!</div>
+            <div class="copy-msg" id="copy-msg-es" data-lang="es">¡Copiado!</div>
+          </div>
+          <a href="https://book.omnibees.com/hotelresults?c=1872&q=7705&hotel_folder=&NRooms=1&CheckIn=26082026&CheckOut=28082026&ad=2&ch=0&ag=&Code=marcelaydaniel&group_code=&loyalty_code=&lang=es-ES&currencyId=23&version=4" target="_blank" class="accom-btn" data-lang="en">Book Now →</a>
+          <a href="https://book.omnibees.com/hotelresults?c=1872&q=7705&hotel_folder=&NRooms=1&CheckIn=26082026&CheckOut=28082026&ad=2&ch=0&ag=&Code=marcelaydaniel&group_code=&loyalty_code=&lang=es-ES&currencyId=23&version=4" target="_blank" class="accom-btn" data-lang="es">Reservar Ahora →</a>
+        </div>
+        <div class="accom-card">
+          <div class="accom-option" data-lang="en">Option 2 — Contact Directly</div>
+          <div class="accom-option" data-lang="es">Opción 2 — Contacto Directo</div>
+          <div class="accom-hotel">Lagoon Llanogrande Hotel</div>
+          <div class="accom-text" data-lang="en">Book directly with the hotel using the code <strong style="color:var(--olive);font-weight:500;">"marcelaydaniel"</strong>.</div>
+          <div class="accom-text" data-lang="es">Reserva directamente con el hotel usando el código <strong style="color:var(--olive);font-weight:500;">"marcelaydaniel"</strong>.</div>
+          <div class="accom-contact">
+            <div>📱 WhatsApp / <span data-lang="en">Phone</span><span data-lang="es">Teléfono</span></div>
+            <div><a href="https://wa.me/573209281003" target="_blank">+57 320 9281 003</a></div>
+            <div style="margin-top:8px;">📧 Email</div>
+            <div><a href="mailto:reservas@lagoonhotel.com">reservas@lagoonhotel.com</a></div>
+          </div>
+        </div>
+        <div class="accom-note">
+          <span data-lang="en">We have arranged accommodation options at Hotel Lagoon, where we will be staying. It will be a pleasure to share those days with you, although you are free to choose the accommodation that best suits you.</span>
+          <span data-lang="es">Hemos organizado opciones de alojamiento en el Hotel Lagoon, donde nos estaremos quedando. Será un placer compartir esos días con ustedes, aunque son libres de elegir el alojamiento que mejor se adapte a sus necesidades.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HAIR & MAKEUP / TUXEDO ── -->
+  <section id="beauty">
+    <div class="section-inner">
+      <div class="section-label" data-lang="en">Get Ready</div>
+      <div class="section-label" data-lang="es">Prepárate</div>
+      <h2 class="section-title" data-lang="en">Beauty &amp; Style</h2>
+      <h2 class="section-title" data-lang="es">Belleza y Estilo</h2>
+      <div class="divider left"></div>
+      <div class="beauty-grid">
+        <div>
+          <div class="beauty-section-title" data-lang="en">Hair &amp; Makeup</div>
+          <div class="beauty-section-title" data-lang="es">Cabello y Maquillaje</div>
+          <p class="beauty-desc" data-lang="en">We want you to feel incredible on our special day. Here are makeup artists and hairstylists in Medellín — contact them directly and choose the one that best suits your style.</p>
+          <p class="beauty-desc" data-lang="es">Queremos que te sientas increíble en nuestro día especial. Aquí te presentamos maquilladores y estilistas en Medellín — contáctalos directamente y elige el que mejor se adapte a tu estilo.</p>
+          <ul class="beauty-list">
+            <li><a href="https://www.instagram.com/makeupbymaca/" target="_blank">Makeup by Maca <span class="ig-handle">@makeupbymaca</span></a></li>
+            <li><a href="https://www.instagram.com/stefaniap.makeup/" target="_blank">Stefanía P. Makeup <span class="ig-handle">@stefaniap.makeup</span></a></li>
+            <li><a href="https://www.instagram.com/iamrafaella_makeup/" target="_blank">Iamrafaella Makeup <span class="ig-handle">@iamrafaella_makeup</span></a></li>
+            <li><a href="https://www.instagram.com/pauaristizabalmakeup/" target="_blank">Pau Aristizabal Makeup <span class="ig-handle">@pauaristizabalmakeup</span></a></li>
+            <li><a href="https://www.instagram.com/diannamosqueramakeup/" target="_blank">Dianna Mosquera Makeup <span class="ig-handle">@diannamosqueramakeup</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="beauty-section-title" data-lang="en">Tuxedo Rental</div>
+          <div class="beauty-section-title" data-lang="es">Alquiler de Smoking</div>
+          <p class="beauty-desc" data-lang="en">For tuxedo rentals, here are a few options in Medellín. We recommend booking in advance to take measurements and ensure availability.</p>
+          <p class="beauty-desc" data-lang="es">Para el alquiler de smoking, aquí tienes algunas opciones en Medellín. Recomendamos reservar con anticipación para tomar medidas y asegurar disponibilidad.</p>
+          <ul class="beauty-list">
+            <li><a href="https://www.instagram.com/formalalquiler/" target="_blank">Formal Alquiler <span class="ig-handle">@formalalquiler</span></a></li>
+            <li><a href="https://www.instagram.com/serratovestuario/" target="_blank">Serrato Vestuario <span class="ig-handle">@serratovestuario</span></a></li>
+            <li><a href="https://www.instagram.com/alquitrajes/" target="_blank">Alquitrajes <span class="ig-handle">@alquitrajes</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WISHING WELL ── -->
+  <section id="wishingwell">
+    <div class="section-inner">
+      <div class="section-label" data-lang="en">Wishing Well</div>
+      <div class="section-label" data-lang="es">Mesa de Regalos</div>
+      <h2 class="section-title" data-lang="en">Gifts</h2>
+      <h2 class="section-title" data-lang="es">Regalos</h2>
+      <div class="divider left"></div>
+      <div class="wish-inner">
+        <div>
+          <p class="wish-text" data-lang="en">"For us, the most important gift is your presence."</p>
+          <p class="wish-text" data-lang="es">"Para nosotros, el regalo más importante es tu presencia."</p>
+          <p class="wish-sub" data-lang="en">If you wish to give us a token of your love, we will receive it with much appreciation. Below you'll find details for an international transfer via Wise.</p>
+          <p class="wish-sub" data-lang="es">Si deseas hacernos un regalo, lo recibiremos con mucho aprecio. A continuación encontrarás los datos para una transferencia internacional a través de Wise.</p>
+        </div>
+        <div class="wise-card">
+          <div class="wise-title" data-lang="en">International Transfer via Wise</div>
+          <div class="wise-title" data-lang="es">Transferencia Internacional vía Wise</div>
+          <div class="wise-bank">Wise</div>
+          <div class="wise-detail">
+            <div><strong data-lang="en">Name</strong><strong data-lang="es">Nombre</strong> Daniel Orlando Peña</div>
+            <div><strong data-lang="en">Account Number</strong><strong data-lang="es">N° de Cuenta</strong> 200110089075</div>
+            <div><strong data-lang="en">Institutional No.</strong><strong data-lang="es">N° Institucional</strong> 621</div>
+            <div><strong data-lang="en">Transit No.</strong><strong data-lang="es">N° Tránsito</strong> 16001</div>
+            <div><strong>Swift / BIC</strong> TRWICAW1XXX</div>
+          </div>
+          <button class="copy-btn" onclick="copyBankDetails()" data-lang="en">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Details
+          </button>
+          <button class="copy-btn" onclick="copyBankDetails()" data-lang="es">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copiar Datos
+          </button>
+          <div class="copy-msg" id="bank-copy-msg" data-lang="en" style="display:none;">Copied to clipboard!</div>
+          <div class="copy-msg" id="bank-copy-msg-es" data-lang="es" style="display:none;">¡Copiado al portapapeles!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RSVP ── -->
+  <section id="rsvp">
+    <div class="monogram-sm">MD</div>
+    <p class="rsvp-quote" data-lang="en">"Love is best celebrated when shared. Your presence will make this day even more memorable."</p>
+    <p class="rsvp-quote" data-lang="es">"El amor se celebra mejor cuando se comparte. Tu presencia hará este día aún más memorable."</p>
+    <a href="https://forms.gle/sa8MYjsZBkkcWNQT7" target="_blank" class="rsvp-btn" data-lang="en">RSVP Here</a>
+    <a href="https://forms.gle/sa8MYjsZBkkcWNQT7" target="_blank" class="rsvp-btn" data-lang="es">Confirmar Asistencia</a>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-mono">MD</div>
+    <div class="footer-text">
+      Marcela &amp; Daniel · August 27, 2026 · Llanogrande, Antioquia, Colombia
+    </div>
+    <div class="footer-text" style="margin-top:8px;">
+      <a href="mailto:danorlandop@gmail.com" style="color:inherit;opacity:0.5;text-decoration:none;">danorlandop@gmail.com</a>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ── -->
+  <script>
+    // Language toggle
+    function setLang(lang) {
+      document.body.classList.toggle('es', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.documentElement.lang = lang;
+      localStorage.setItem('md-lang', lang);
+    }
+    // Persist language
+    const savedLang = localStorage.getItem('md-lang');
+    if (savedLang === 'es') setLang('es');
+
+    // Countdown timer
+    function updateCountdown() {
+      const weddingDate = new Date('2026-08-27T13:00:00-05:00');
+      const now = new Date();
+      const diff = weddingDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<div style="font-family:Cormorant Garamond,serif;font-size:32px;font-weight:300;letter-spacing:0.1em;">¡Hoy es el día! · Today is the day!</div>';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Copy promo code
+    function copyCode(el) {
+      navigator.clipboard.writeText('marcelaydaniel').then(() => {
+        document.getElementById('copy-msg').style.display = 'block';
+        document.getElementById('copy-msg-es').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('copy-msg').style.display = 'none';
+          document.getElementById('copy-msg-es').style.display = 'none';
+        }, 2000);
+      });
+    }
+
+    // Copy bank details
+    function copyBankDetails() {
+      const text = `Wise — Daniel Orlando Peña\nAccount: 200110089075\nInstitutional: 621\nTransit: 16001\nSwift/BIC: TRWICAW1XXX`;
+      navigator.clipboard.writeText(text).then(() => {
+        document.getElementById('bank-copy-msg').style.display = 'block';
+        document.getElementById('bank-copy-msg-es').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('bank-copy-msg').style.display = 'none';
+          document.getElementById('bank-copy-msg-es').style.display = 'none';
+        }, 2500);
+      });
+    }
+
+    // Smooth nav scroll offset
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 72;
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
