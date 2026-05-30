@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="transitions.css" />
   <style>
     /* ─── RESET & BASE ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -819,7 +820,7 @@
   </section>
 
   <!-- ── OUR STORY ── -->
-  <section id="story">
+  <section id="story" class="reveal">
     <div class="section-inner">
       <div class="section-label" data-lang="en">Celebrating 15 Years Together</div>
       <div class="section-label" data-lang="es">Celebrando 15 Años Juntos</div>
@@ -845,7 +846,7 @@
   </section>
 
   <!-- ── SCHEDULE ── -->
-  <section id="schedule">
+  <section id="schedule" class="reveal">
     <div class="section-inner">
       <div class="section-label" data-lang="en">Thursday, August 27, 2026</div>
       <div class="section-label" data-lang="es">Jueves, 27 de Agosto de 2026</div>
@@ -898,7 +899,7 @@
   </section>
 
   <!-- ── DRESS CODE ── -->
-  <section id="dresscode">
+  <section id="dresscode" class="reveal">
     <div class="section-inner">
       <div class="section-label" data-lang="en">What to Wear</div>
       <div class="section-label" data-lang="es">¿Cómo Vestirse?</div>
@@ -940,7 +941,7 @@
   </section>
 
   <!-- ── VENUES ── -->
-  <section id="venues">
+  <section id="venues" class="reveal">
     <div class="section-inner" style="max-width:1000px;">
       <div class="section-label" data-lang="en">Where to go</div>
       <div class="section-label" data-lang="es">Lugares</div>
@@ -981,7 +982,7 @@
   </section>
 
   <!-- ── ACCOMMODATION ── -->
-  <section id="accommodation">
+  <section id="accommodation" class="reveal">
     <div class="section-inner" style="max-width:900px;">
       <div class="section-label" data-lang="en">Where to Sleep</div>
       <div class="section-label" data-lang="es">Dónde Alojarse</div>
@@ -1027,7 +1028,7 @@
   </section>
 
   <!-- ── HAIR & MAKEUP / TUXEDO ── -->
-  <section id="beauty">
+  <section id="beauty" class="reveal">
     <div class="section-inner">
       <div class="section-label" data-lang="en">Get Ready</div>
       <div class="section-label" data-lang="es">Prepárate</div>
@@ -1064,7 +1065,7 @@
   </section>
 
   <!-- ── WISHING WELL ── -->
-  <section id="wishingwell">
+  <section id="wishingwell" class="reveal">
     <div class="section-inner">
       <div class="section-label" data-lang="en">Wishing Well</div>
       <div class="section-label" data-lang="es">Mesa de Regalos</div>
@@ -1105,7 +1106,7 @@
   </section>
 
   <!-- ── RSVP ── -->
-  <section id="rsvp">
+  <section id="rsvp" class="reveal">
     <div class="monogram-sm">MD</div>
     <p class="rsvp-quote" data-lang="en">"Love is best celebrated when shared. Your presence will make this day even more memorable."</p>
     <p class="rsvp-quote" data-lang="es">"El amor se celebra mejor cuando se comparte. Tu presencia hará este día aún más memorable."</p>
@@ -1183,6 +1184,23 @@
         }, 2500);
       });
     }
+
+    // Section reveal on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Nav shrink on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
 
     // Smooth nav scroll offset
     document.querySelectorAll('a[href^="#"]').forEach(a => {

@@ -1,0 +1,161 @@
+/* ─── SECTION REVEAL ────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── NAV SHRINK ON SCROLL ──────────────────────────────────────────────── */
+nav {
+  transition: padding 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease;
+}
+nav.scrolled {
+  padding: 10px 40px;
+  box-shadow: 0 2px 24px rgba(28,28,26,0.08);
+}
+nav ul li a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: var(--olive);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+nav ul li a:hover::after { width: 100%; }
+
+/* ─── CARDS ─────────────────────────────────────────────────────────────── */
+.dress-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease;
+}
+.dress-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(28,28,26,0.1);
+}
+
+.venue-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease,
+              border-color 0.3s ease;
+}
+.venue-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 40px rgba(28,28,26,0.09);
+  border-color: rgba(74,92,63,0.3);
+}
+
+.accom-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease;
+}
+.accom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.2);
+}
+
+.schedule-item {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s ease;
+}
+.schedule-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(28,28,26,0.1);
+  z-index: 1;
+  position: relative;
+}
+
+/* ─── BUTTONS & LINKS ───────────────────────────────────────────────────── */
+.map-btn,
+.dress-link,
+.accom-btn,
+.rsvp-btn {
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.3s ease,
+              transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s ease;
+}
+.map-btn:hover,
+.dress-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(28,28,26,0.12);
+}
+.rsvp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(244,239,232,0.2);
+}
+.accom-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(74,92,63,0.25);
+}
+
+.accom-code {
+  transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease;
+}
+.accom-code:hover { transform: scale(1.03); }
+
+.copy-btn {
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+}
+.copy-btn:hover { transform: translateY(-2px); }
+
+/* ─── BEAUTY LIST LINKS ──────────────────────────────────────────────────── */
+.beauty-list li a {
+  transition: color 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.beauty-list li a:hover {
+  color: var(--olive);
+  transform: translateX(6px);
+}
+.beauty-list li a::before {
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease;
+}
+.beauty-list li a:hover::before {
+  width: 28px;
+  background: var(--olive);
+}
+
+/* ─── COLOR SWATCHES ─────────────────────────────────────────────────────── */
+.swatch-dot {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s ease;
+}
+.swatch:hover .swatch-dot {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(28,28,26,0.18);
+}
+
+/* ─── COUNTDOWN NUMBERS ──────────────────────────────────────────────────── */
+.countdown-num {
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+
+/* ─── SECTION BACKGROUND TRANSITIONS ─────────────────────────────────────── */
+section {
+  transition: background 0.6s ease;
+}
+
+/* ─── REDUCE MOTION ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .dress-card:hover,
+  .venue-card:hover,
+  .accom-card:hover,
+  .schedule-item:hover { transform: none; }
+}
